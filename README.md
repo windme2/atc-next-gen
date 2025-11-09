@@ -1,6 +1,8 @@
-# 🚀 ATC Next Gen API
+# ✨ ATC Next Gen API
 
 REST API สำหรับระบบจัดการสินค้า พร้อม JWT Authentication และ MongoDB Atlas
+
+**🌐 Live Demo:** [https://atc-next-gen-silk.onrender.com/api/status](https://atc-next-gen-silk.onrender.com/api/status)
 
 ## ✨ คุณสมบัติ
 
@@ -208,6 +210,52 @@ Headers: Authorization: Bearer YOUR_TOKEN
   "currency": "THB"
 }
 ```
+
+---
+
+## 🚀 Deploy to Render.com
+
+### ขั้นตอนการ Deploy
+
+1. **สร้าง Repository บน GitHub**
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/your-username/atc-next-gen.git
+   git push -u origin main
+   ```
+
+2. **ตั้งค่า MongoDB Atlas**
+   - ไปที่ [MongoDB Atlas](https://cloud.mongodb.com/)
+   - สร้าง Cluster ใหม่ (ฟรี)
+   - เลือก **Network Access** → Add IP: `0.0.0.0/0` (อนุญาตทุก IP)
+   - คัดลอก Connection String (MONGO_URI)
+
+3. **Deploy บน Render.com**
+   - ไปที่ [Render.com](https://render.com/) และ Login ด้วย GitHub
+   - คลิก **New +** → **Web Service**
+   - เชื่อมต่อ GitHub Repository (`atc-next-gen`)
+   - ตั้งค่า:
+     - **Name:** `atc-next-gen`
+     - **Environment:** `Node`
+     - **Build Command:** `npm install`
+     - **Start Command:** `npm start`
+   
+4. **ตั้งค่า Environment Variables**
+   - ไปที่ **Environment** tab
+   - เพิ่มตัวแปรเหล่านี้:
+     ```
+     PORT=3000
+     MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/database
+     JWT_SECRET=your_super_secret_key_here_12345
+     NODE_ENV=production
+     ```
+
+5. **Deploy และทดสอบ**
+   - Render จะ auto-deploy เมื่อมีการ push ใหม่
+   - ทดสอบ API: `https://your-app.onrender.com/api/status`
+   - ⚠️ **หมายเหตุ:** Free tier จะ sleep หลัง 15 นาทีไม่มีใช้งาน (ใช้เวลา ~30 วินาทีในการ wake up)
 
 ---
 
